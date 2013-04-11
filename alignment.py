@@ -170,4 +170,4 @@ print >>out, aln1[::-1]
 print aln2[::-1]
 print >>out, aln2[::-1]
 
-    
+out.close()
