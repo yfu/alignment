@@ -101,10 +101,10 @@ for i in range(1, len(query)):
         pj[i][j] = maxj
 
 # Output to see if these three matrices contain the correct values        
-for i in range(0, len(m)):
-    for j in range(0, len(m[i])):
-        print "%2d(%1d,%1d)" % (m[i][j], pi[i][j], pj[i][j]),
-    print 
+# for i in range(0, len(m)):
+#     for j in range(0, len(m[i])):
+#         print "%2d(%1d,%1d)" % (m[i][j], pi[i][j], pj[i][j]),
+#     print 
 
 # Identify the maximum score
 maxm = m[len(query)-1][len(template)-1]
