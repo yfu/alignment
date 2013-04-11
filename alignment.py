@@ -8,6 +8,7 @@
 
 import sys
 import re
+import textwrap
 
 if len(sys.argv) <3:
     print "Usage: python %s query.seq template.seq" % sys.argv[0]
@@ -161,13 +162,34 @@ for j in range(pjj-1, 0-1, -1):
     aln1 += "-"
     aln2 += template[j]
 try:
-    out = open("alignment.txt", "w")
+    out = open("alignment.fasta", "w")
 except:
     print "I cannnot write to 'alignment.txt'"
 
-print aln1[::-1]
+# Output with a fixed width to STDOUT and output as is in the file
+width = 60
+print ">Query"
+reversed_aln1 = aln1[::-1]
+length = len(reversed_aln1)
+for i in range(0, length):
+    if i % width == 0 and i != 0:
+        print
+    sys.stdout.write(reversed_aln1[i])
+print
+
+print >>out, ">Query"
 print >>out, aln1[::-1]
-print aln2[::-1]
-print >>out, aln2[::-1]
+
+print ">Template"
+reversed_aln2 = aln2[::-1]
+length = len(reversed_aln2)
+for i in range(0, length):
+    if i % width == 0 and i != 0:
+        print
+    sys.stdout.write(reversed_aln2[i])
+print
+
+print >>out, ">Template"
+print >>out, aln2[::-1] 
 
 out.close()
