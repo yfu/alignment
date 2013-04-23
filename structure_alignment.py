@@ -139,6 +139,7 @@ def ins_is_compatible(start, end, structure):
         return True
     else:
         return False
+
 def del_is_compatible(start, end, dis):
     if dis[start][end] <= 5.0:
         return True
@@ -166,7 +167,7 @@ if __name__ == "__main__":
     # Get the distances between any pairs of AAs
     dis, structure = pre_calc(template_xyz)
     # print "dis[11][12] is " + str(dis[11][12])
-    # print dis
+    # print dis[1][10]
     
     aas = mf.readline()
     aas = aas.strip()
@@ -235,7 +236,7 @@ if __name__ == "__main__":
                 # If this option of "check_compatibility" is turned on...
                 if check_compatibility == True:
                     # If this insertion is incompatible...
-                    if ins_is_compatible(k, j-1, structure) == False:
+                    if ins_is_compatible(j-1, j, structure) == False:
                         max_i -= gapi
                 
                 if max_i > maxm:
@@ -248,7 +249,7 @@ if __name__ == "__main__":
                 max_j -= gapo + gape * (j - k - 2)
                 # If this option of "check_compatibility" is turned on...
                 if check_compatibility == True:
-                    if del_is_compatible(i-1, k, dis) == False:
+                    if del_is_compatible(k, j, dis) == False:
                         max_j -= gapi
 
                 if max_j > maxm:
